@@ -1,10 +1,10 @@
-﻿namespace Core.Entities;
+﻿using Core.Entities;
 
-public interface IEntity
+namespace Entity.Concrete;
+
+public class Product : IEntity
 {
     public int Id { get; set; }
-    
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
-
 }
