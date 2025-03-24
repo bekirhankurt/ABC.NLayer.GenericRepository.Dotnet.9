@@ -8,7 +8,7 @@ public interface IProductService
     Task<IDataResult<Product>> GetById(int id);
     Task<IDataResult<IEnumerable<Product>>> GetAll();
     Task<IDataResult<IEnumerable<Product>>> GetAllByCategory(int categoryId);
-    Task<IResult> Add(Product product);
+    IResult Add(Product product);
     IResult Update(Product product);
     IResult Delete(Product product);
 
