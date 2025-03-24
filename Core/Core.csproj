@@ -7,12 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Aspects\**" />
-    <EmbeddedResource Remove="Aspects\**" />
-    <None Remove="Aspects\**" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="Castle.Core" Version="5.2.1" />
     <PackageReference Include="FluentValidation" Version="11.11.0" />
     <PackageReference Include="log4net" Version="3.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
@@ -23,8 +18,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Aspects\Autofac\Exception\" />
+    <Folder Include="Aspects\Autofac\Transaction\" />
+    <Folder Include="Aspects\Autofac\Performance\" />
     <Folder Include="DependencyResolvers\" />
     <Folder Include="Utilities\IoC\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.SignalR.Common">
+      <HintPath>C:\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref\9.0.2\ref\net9.0\Microsoft.AspNetCore.SignalR.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
