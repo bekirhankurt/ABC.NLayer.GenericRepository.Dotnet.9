@@ -13,11 +13,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\Concrete\" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.35.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.3" />
+    <Folder Include="Utilities\IoC\" />
   </ItemGroup>
 
 </Project>
