@@ -40,6 +40,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+builder.Services.AddDependencyResolvers([
+    new CoreModule()
+]);
+
+
+
 
 
 
@@ -51,10 +57,16 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
+app.ConfigureCustomExceptionMiddleware();
+
+app.UseCors(builder => builder.WithOrigins("http://localhost:3000").AllowAnyHeader());
+
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseRouting();
 
-app.MapControllers();
+app.UseAuthentication();
+
+app.UseAuthorization();
 
 app.Run();
