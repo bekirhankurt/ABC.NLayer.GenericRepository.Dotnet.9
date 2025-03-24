@@ -8,7 +8,6 @@ namespace Repository.Concrete.Contexts;
 
 public class EntityFrameworkContext(IOptions<DatabaseSettings> databaseOptions) : DbContext
 {
-    private readonly IOptions<DatabaseSettings> _databaseOptions = databaseOptions;
     public DbSet<Product> Products { get; set; }
     public DbSet<Category> Categories { get; set; }
     public DbSet<OperationClaim> OperationClaims { get; set; }
