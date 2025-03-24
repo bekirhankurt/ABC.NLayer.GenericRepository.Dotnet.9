@@ -36,9 +36,9 @@ public class ProductService : IProductService
         return new SuccessDataResult<IEnumerable<Product>>(filteredProducts.ToList());
     }
 
-    public async Task<IResult> Add(Product product)
+    public IResult Add(Product product)
     {
-        var result = BusinessRules.Run(await CheckIfProductNameExists(product.Name), CheckIfCategoryIsEnabled());
+        var result = BusinessRules.Run( CheckIfProductNameExists(product.Name), CheckIfCategoryIsEnabled());
 
         if (result != null)
         {
@@ -50,7 +50,7 @@ public class ProductService : IProductService
 
     private IResult CheckIfCategoryIsEnabled()
     {
-        var result = _categoryService.GetAll();
+        var result = _categoryService.GetAll().Result;
         if (result.Data.Count() <10)
         {
             return new ErrorResult(Messages.ProductNameAlreadyExists);
@@ -59,9 +59,9 @@ public class ProductService : IProductService
         return new SuccessResult();
     }
 
-    private async Task<IResult> CheckIfProductNameExists(string productName)
+    private IResult CheckIfProductNameExists(string productName)
     {
-        var result = await _productRepository.GetAllAsync(p => p.Name == productName);
+        var result =  _productRepository.GetAllAsync(p => p.Name == productName).Result;
         if (result.Any())
         {
             return new ErrorResult(Messages.ProductNameAlreadyExists);
