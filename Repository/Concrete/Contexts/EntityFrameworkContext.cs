@@ -1,11 +1,14 @@
 ﻿using Core.Entities.Concrete;
 using Entity.Concrete;
+using Entity.Settings;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace Repository.Concrete.Contexts;
 
-public class EntityFrameworkContext : DbContext
+public class EntityFrameworkContext(IOptions<DatabaseSettings> databaseOptions) : DbContext
 {
+    private readonly IOptions<DatabaseSettings> _databaseOptions = databaseOptions;
     public DbSet<Product> Products { get; set; }
     public DbSet<Category> Categories { get; set; }
     public DbSet<OperationClaim> OperationClaims { get; set; }
@@ -14,7 +17,7 @@ public class EntityFrameworkContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Northwind;Trusted_Connection=true");
+        optionsBuilder.UseSqlServer($"Server={databaseOptions.Value.DataSource};Database={databaseOptions.Value.InitialCatalog};Trusted_Connection={databaseOptions.Value.TrustedConnection}");
     }
 
 
